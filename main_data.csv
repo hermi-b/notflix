@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notflix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <!-- Intro screen -->
+    <div id="intro-screen">
+        <h1 class="title">NOTFLIX</h1>
+        <p class="subtitle">Click anywhere to begin your custom movie watching experience</p>
+    </div>
+
+    <!-- Main content (hidden at first) -->
+    <div id="main-content" class="hidden">
+        <h1>NOTFLIX</h1>
+        <form method="post">
+            <input type="text" name="movie" placeholder="Enter a movie title" required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if recommendations %}
+        <div class="recommendations">
+            <h2>Recommended Movies:</h2>
+            <ul>
+                {% for movie in recommendations %}
+                    <li>{{ movie }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div id="spinner" class="spinner hidden"></div>
+    </div>
+
+    <audio id="start-sound" src="{{ url_for('static', filename='netflix-sound.mp3') }}"></audio>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>NOTFLIX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>NOTFLIX</h1>
+    <form method="post">
+        <input type="text" name="movie" placeholder="Enter a movie title" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if recommendations %}
+    <div class="recommendations">
+        <h2>Recommended Movies:</h2>
+        <ul>
+            {% for movie in recommendations %}
+            <li>{{ movie }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</body>
+</html>
+-->
